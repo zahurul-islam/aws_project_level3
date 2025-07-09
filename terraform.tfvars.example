@@ -1,0 +1,34 @@
+# AWS Configuration
+aws_region = "us-east-1"
+environment = "development"
+project_name = "aws-capstone-level3"
+
+# VPC Configuration
+vpc_cidr = "10.0.0.0/16"
+public_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24"]
+private_subnet_cidrs = ["10.0.3.0/24", "10.0.4.0/24"]
+database_subnet_cidrs = ["10.0.5.0/24", "10.0.6.0/24"]
+
+# EC2 Configuration
+instance_type = "t2.micro"
+key_pair_name = "your-key-pair-name"  # Replace with your actual key pair
+
+# Feature Toggles
+enable_nat_gateway = false    # Set to true if you want NAT Gateway (incurs costs)
+enable_bastion_host = true    # Set to false to disable bastion host
+enable_rds = true            # Set to false to use local MySQL on EC2
+
+# RDS Configuration
+rds_instance_class = "db.t3.micro"
+rds_engine_version = "8.0"
+rds_allocated_storage = 20
+
+# Database Configuration
+wordpress_db_name = "wordpress"
+wordpress_db_username = "wordpressuser"
+wordpress_db_password = "ChangeMe123!"  # Change this to a secure password
+
+# Auto Scaling Configuration
+auto_scaling_min_size = 1
+auto_scaling_max_size = 3
+auto_scaling_desired_capacity = 2
