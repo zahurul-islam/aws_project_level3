@@ -131,7 +131,7 @@ resource "aws_instance" "bastion" {
   subnet_id             = aws_subnet.public[0].id
   vpc_security_group_ids = [aws_security_group.bastion[0].id]
 
-  user_data = local.bastion_userdata
+  user_data_base64 = local.bastion_userdata
 
   iam_instance_profile = aws_iam_instance_profile.bastion[0].name
 

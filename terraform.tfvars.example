@@ -1,5 +1,5 @@
 # AWS Configuration
-aws_region = "us-east-1"
+aws_region = "us-west-2"
 environment = "development"
 project_name = "aws-capstone-level3"
 
@@ -11,10 +11,10 @@ database_subnet_cidrs = ["10.0.5.0/24", "10.0.6.0/24"]
 
 # EC2 Configuration
 instance_type = "t2.micro"
-key_pair_name = "your-key-pair-name"  # Replace with your actual key pair
+key_pair_name = "zah"  # Replace with your actual key pair
 
 # Feature Toggles
-enable_nat_gateway = false    # Set to true if you want NAT Gateway (incurs costs)
+enable_nat_gateway = true    # Set to true if you want NAT Gateway (incurs costs)
 enable_bastion_host = true    # Set to false to disable bastion host
 enable_rds = true            # Set to false to use local MySQL on EC2
 
