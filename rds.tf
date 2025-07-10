@@ -24,13 +24,11 @@ resource "aws_db_instance" "main" {
   backup_window           = "03:00-04:00"
   maintenance_window      = "sun:04:00-sun:05:00"
 
-  # Performance Insights (free for db.t3.micro)
-  performance_insights_enabled          = true
-  performance_insights_retention_period = 7
+  # Performance Insights (not supported for db.t3.micro in free tier)
+  performance_insights_enabled = false
 
-  # Monitoring
-  monitoring_interval = 60
-  monitoring_role_arn = aws_iam_role.rds_monitoring[0].arn
+  # Monitoring (basic free tier monitoring)
+  monitoring_interval = 0
 
   # Security
   deletion_protection = false

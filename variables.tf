@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "AWS region for resources"
   type        = string
-  default     = "us-east-1"
+  default     = "us-west=2"
 }
 
 variable "environment" {
@@ -49,7 +49,7 @@ variable "instance_type" {
 variable "key_pair_name" {
   description = "Name of the EC2 Key Pair"
   type        = string
-  default     = ""
+  default     = "zah"
 }
 
 variable "enable_nat_gateway" {
