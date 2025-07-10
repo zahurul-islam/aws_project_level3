@@ -55,7 +55,7 @@ resource "aws_backup_plan" "main" {
   rule {
     rule_name         = "daily_backup"
     target_vault_name = aws_backup_vault.main.name
-    schedule          = "cron(0 2 * * ? *)"  # Daily at 2 AM
+    schedule          = "cron(0 2 * * ? *)" # Daily at 2 AM
 
     lifecycle {
       cold_storage_after = 30
@@ -71,11 +71,11 @@ resource "aws_backup_plan" "main" {
   rule {
     rule_name         = "weekly_backup"
     target_vault_name = aws_backup_vault.main.name
-    schedule          = "cron(0 3 ? * SUN *)"  # Weekly on Sunday at 3 AM
+    schedule          = "cron(0 3 ? * SUN *)" # Weekly on Sunday at 3 AM
 
     lifecycle {
       cold_storage_after = 30
-      delete_after       = 1095  # 3 years
+      delete_after       = 1095 # 3 years
     }
 
     recovery_point_tags = {

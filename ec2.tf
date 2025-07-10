@@ -42,10 +42,10 @@ resource "aws_launch_template" "wordpress" {
 
 # Auto Scaling Group for WordPress instances
 resource "aws_autoscaling_group" "wordpress" {
-  name                = "${var.project_name}-wordpress-asg"
-  vpc_zone_identifier = aws_subnet.private[*].id
-  target_group_arns   = [aws_lb_target_group.wordpress.arn]
-  health_check_type   = "ELB"
+  name                      = "${var.project_name}-wordpress-asg"
+  vpc_zone_identifier       = aws_subnet.private[*].id
+  target_group_arns         = [aws_lb_target_group.wordpress.arn]
+  health_check_type         = "ELB"
   health_check_grace_period = 300
 
   min_size         = var.auto_scaling_min_size
@@ -76,7 +76,7 @@ resource "aws_autoscaling_policy" "scale_up" {
   name                   = "${var.project_name}-scale-up"
   scaling_adjustment     = 1
   adjustment_type        = "ChangeInCapacity"
-  cooldown              = 300
+  cooldown               = 300
   autoscaling_group_name = aws_autoscaling_group.wordpress.name
 }
 
@@ -84,7 +84,7 @@ resource "aws_autoscaling_policy" "scale_down" {
   name                   = "${var.project_name}-scale-down"
   scaling_adjustment     = -1
   adjustment_type        = "ChangeInCapacity"
-  cooldown              = 300
+  cooldown               = 300
   autoscaling_group_name = aws_autoscaling_group.wordpress.name
 }
 
@@ -121,14 +121,14 @@ resource "aws_cloudwatch_metric_alarm" "cpu_low" {
   dimensions = {
     AutoScalingGroupName = aws_autoscaling_group.wordpress.name
   }
-}# Bastion Host (if enabled)
+} # Bastion Host (if enabled)
 resource "aws_instance" "bastion" {
   count = var.enable_bastion_host ? 1 : 0
 
   ami                    = data.aws_ami.amazon_linux.id
-  instance_type         = var.instance_type
-  key_name              = var.key_pair_name != "" ? var.key_pair_name : null
-  subnet_id             = aws_subnet.public[0].id
+  instance_type          = var.instance_type
+  key_name               = var.key_pair_name != "" ? var.key_pair_name : null
+  subnet_id              = aws_subnet.public[0].id
   vpc_security_group_ids = [aws_security_group.bastion[0].id]
 
   user_data_base64 = local.bastion_userdata

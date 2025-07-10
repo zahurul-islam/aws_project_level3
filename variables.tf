@@ -43,7 +43,7 @@ variable "database_subnet_cidrs" {
 variable "instance_type" {
   description = "EC2 instance type"
   type        = string
-  default     = "t2.micro"  # Free tier eligible
+  default     = "t2.micro" # Free tier eligible
 }
 
 variable "key_pair_name" {
@@ -73,7 +73,7 @@ variable "enable_rds" {
 variable "rds_instance_class" {
   description = "RDS instance class"
   type        = string
-  default     = "db.t3.micro"  # Free tier eligible
+  default     = "db.t3.micro" # Free tier eligible
 }
 
 variable "rds_engine_version" {
@@ -85,7 +85,7 @@ variable "rds_engine_version" {
 variable "rds_allocated_storage" {
   description = "RDS allocated storage in GB"
   type        = number
-  default     = 20  # Free tier limit
+  default     = 20 # Free tier limit
 }
 
 variable "wordpress_db_name" {

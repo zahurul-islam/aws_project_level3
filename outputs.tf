@@ -87,11 +87,11 @@ output "launch_template_id" {
 output "deployment_summary" {
   description = "Summary of the deployed infrastructure"
   value = {
-    vpc_cidr           = var.vpc_cidr
-    availability_zones = data.aws_availability_zones.available.names
+    vpc_cidr            = var.vpc_cidr
+    availability_zones  = data.aws_availability_zones.available.names
     nat_gateway_enabled = var.enable_nat_gateway
-    bastion_enabled    = var.enable_bastion_host
-    rds_enabled        = var.enable_rds
+    bastion_enabled     = var.enable_bastion_host
+    rds_enabled         = var.enable_rds
     autoscaling_config = {
       min_size         = var.auto_scaling_min_size
       max_size         = var.auto_scaling_max_size

@@ -2,43 +2,43 @@
 resource "aws_db_instance" "main" {
   count = var.enable_rds ? 1 : 0
 
-  identifier             = "${var.project_name}-database"
-  allocated_storage      = var.rds_allocated_storage
-  max_allocated_storage  = 100
+  identifier            = "${var.project_name}-database"
+  allocated_storage     = var.rds_allocated_storage
+  max_allocated_storage = 100
   storage_type          = "gp2"
   storage_encrypted     = true
-  
+
   engine         = "mysql"
   engine_version = var.rds_engine_version
   instance_class = var.rds_instance_class
-  
+
   db_name  = var.wordpress_db_name
   username = var.wordpress_db_username
   password = var.wordpress_db_password
-  
+
   vpc_security_group_ids = [aws_security_group.database.id]
   db_subnet_group_name   = aws_db_subnet_group.main.name
-  
+
   # Backup settings
   backup_retention_period = 7
-  backup_window          = "03:00-04:00"
-  maintenance_window     = "sun:04:00-sun:05:00"
-  
+  backup_window           = "03:00-04:00"
+  maintenance_window      = "sun:04:00-sun:05:00"
+
   # Performance Insights (free for db.t3.micro)
-  performance_insights_enabled = true
+  performance_insights_enabled          = true
   performance_insights_retention_period = 7
-  
+
   # Monitoring
   monitoring_interval = 60
   monitoring_role_arn = aws_iam_role.rds_monitoring[0].arn
-  
+
   # Security
   deletion_protection = false
   skip_final_snapshot = true
-  
+
   # Parameter group for optimization
   parameter_group_name = aws_db_parameter_group.main[0].name
-  
+
   tags = {
     Name = "${var.project_name}-database"
     Type = "RDS"

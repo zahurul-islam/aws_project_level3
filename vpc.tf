@@ -45,7 +45,7 @@ resource "aws_subnet" "private" {
     Name = "${var.project_name}-private-subnet-${count.index + 1}"
     Type = "Private"
   }
-}# Database Subnets
+} # Database Subnets
 resource "aws_subnet" "database" {
   count = length(var.database_subnet_cidrs)
 
@@ -63,7 +63,7 @@ resource "aws_subnet" "database" {
 resource "aws_eip" "nat" {
   count = var.enable_nat_gateway ? 1 : 0
 
-  domain = "vpc"
+  domain     = "vpc"
   depends_on = [aws_internet_gateway.main]
 
   tags = {

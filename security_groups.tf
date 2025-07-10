@@ -76,7 +76,7 @@ resource "aws_security_group" "web" {
   tags = {
     Name = "${var.project_name}-web-sg"
   }
-}# Security Group for Bastion Host (if enabled)
+} # Security Group for Bastion Host (if enabled)
 resource "aws_security_group" "bastion" {
   count = var.enable_bastion_host ? 1 : 0
 
